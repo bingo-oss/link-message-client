@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>bingo.pom.parent</groupId>
+		<artifactId>bingo-base-pom</artifactId>
+		<version>1.1.0</version>
+	</parent>
+
+
+	<groupId>link</groupId>
+	<artifactId>link-test</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<properties>
+		<maven.deploy.skip>true</maven.deploy.skip>
+	</properties>
+	
+	<build>
+		<outputDirectory>${basedir}/WebRoot/WEB-INF/classes</outputDirectory>
+		<testOutputDirectory>${basedir}/WebRoot/WEB-INF/classes</testOutputDirectory>
+	</build>
+
+	<!-- 在这里添加你工程的依赖jar包 -->
+	<dependencies>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.1.2</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>link.sdk</groupId>
+			<artifactId>link-message-client</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+</project>

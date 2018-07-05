@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 正式环境使用 -->
+<configuration debug="true">
+
+	<!-- ============================ 变量设置 ============================ -->
+	
+	<!-- 普通应用日志路径 -->
+	<property name="emb.log.path" value="logs/emb-server.log" />
+	<!-- 监控耗时日志路径 -->
+	<property name="emb.monitor.log.path" value="logs/emb-server-monitor.log" />
+	<!-- 异常日志路径 -->
+	<property name="emb.error.log.path" value="logs/emb-server-error.log" />
+	
+	<!-- 尽量避免使用，除非执行速度不造成任何问题:[%C/class][%F/file][%L/line][%M/method]  -->
+	<property name="logPattern" value="%d{HH:mm:ss.SSS} %level [%thread] [%logger:%line] - %msg%n" />
+	<!-- 异步写日志的队列大小，如果队列满了，就会阻塞，需要设置足够大 -->
+	<property name="queueSize" value="10000" />
+	<!-- 日志文件最大的大小 -->
+	<property name="maxFileSize" value="100MB" />
+	<!-- 日志文件编码 -->
+	<property name="charset" value="UTF-8" />
+	
+	<!-- ============================ appender设置 ============================ -->
+
+	<!-- 标准控制台输出 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<Target>System.out</Target>
+		<encoder charset="${charset}">
+			<pattern>${logPattern}</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 普通日志 -->
+	<appender name="EMB_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Append>true</Append>
+		<File>${emb.log.path}</File>
+		<encoder charset="${charset}">
+			<pattern>${logPattern}</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${emb.log.path}.%d{yyyy-MM-dd}.%i</fileNamePattern>
+
+			<!--日志文件最大的大小 -->
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${maxFileSize}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<!-- 当日志量大的时候可以把这个注释打开 
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>DENY</onMatch>
+			<onMismatch>ACCEPT</onMismatch>
+		</filter>
+		-->
+	</appender>
+	<appender name="ASYNC_EMB_LOG_FILE" class="ch.qos.logback.classic.AsyncAppender">
+		<queueSize>${queueSize}</queueSize>
+        <appender-ref ref="EMB_LOG_FILE" />
+    </appender>
+
+	<!-- 错误日志 -->
+	<appender name="ERROR_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Append>true</Append>
+		<file>${emb.error.log.path}</file>
+		<encoder charset="${charset}">
+			<pattern>${logPattern}</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${emb.error.log.path}.%d{yyyy-MM-dd}.%i</fileNamePattern>
+
+			<!--日志文件最大的大小 -->
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${maxFileSize}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	<appender name="ASYNC_ERROR_LOG_FILE" class="ch.qos.logback.classic.AsyncAppender">
+		<queueSize>${queueSize}</queueSize>
+        <appender-ref ref="ERROR_LOG_FILE" />
+    </appender>
+
+	<!-- 监控日志 -->
+	<appender name="MONITOR_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Append>true</Append>
+		<File>${emb.monitor.log.path}</File>
+		<encoder charset="${charset}">
+			<pattern>${logPattern}</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${emb.monitor.log.path}.%d{yyyy-MM-dd}.%i</fileNamePattern>
+
+			<!--日志文件最大的大小 -->
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${maxFileSize}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+	<appender name="ASYNC_MONITOR_LOG_FILE" class="ch.qos.logback.classic.AsyncAppender">
+		<queueSize>${queueSize}</queueSize>
+        <appender-ref ref="MONITOR_LOG_FILE" />
+    </appender>
+
+	<!-- ============================ 单独设置部分日志输出信息 ============================ -->
+	
+	<!-- mongodb -->
+	<logger name="org.mongodb.driver.cluster" level="INFO" additivity="true" />
+	<logger name="org.mongodb.driver.protocol" level="INFO" additivity="true" />
+	<logger name="com.mongodb.diagnostics.logging" level="DEBUG" additivity="true" />
+	
+	<!-- netty -->
+	<logger name="io.netty.util.internal.logging" level="INFO" additivity="true" />
+	<logger name="io.netty.handler.codec" level="INFO" additivity="true" />
+	
+	<!-- commons-httpclient -->
+	<logger name="httpclient.wire" level="INFO" additivity="true" />
+	<logger name="org.apache.commons.httpclient" level="INFO" additivity="true" />
+	
+	<!-- httpcomponents -->
+	<logger name="org.apache.http" level="INFO" additivity="true" />
+		
+	<!-- leap -->
+	<logger name="applog.monitor.slow" level="INFO" additivity="false">
+        <appender-ref ref="ASYNC_MONITOR_LOG_FILE"/>
+    </logger>
+
+	<!-- EMB -->
+	<logger name="bingo.emb.server.schedule.ClientChannelCheckScheduleTask" level="INFO" additivity="true" />
+	<logger name="bingo.emb.server.http.HttpRequest" level="TRACE" additivity="true" />
+
+	<!-- 默认配置：建议在未稳定运行前把日志级别设置为DEBUG，方便分析问题。 -->
+	<root level="DEBUG">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>

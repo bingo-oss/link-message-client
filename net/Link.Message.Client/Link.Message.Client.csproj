@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8C9A545E-F2A4-46A4-8767-0B1499FF7738}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Link.Message.Client</RootNamespace>
+    <AssemblyName>Link.Message.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessToken.cs" />
+    <Compile Include="content\AudioMessageContent.cs" />
+    <Compile Include="content\complex\Action.cs" />
+    <Compile Include="content\complex\ActionType.cs" />
+    <Compile Include="content\complex\ComplexMessageContent.cs" />
+    <Compile Include="content\complex\ComplexMessageContentItem.cs" />
+    <Compile Include="content\complex\ComplexMessageType.cs" />
+    <Compile Include="content\complex\linear\Alignment.cs" />
+    <Compile Include="content\complex\linear\Column.cs" />
+    <Compile Include="content\complex\linear\FormContent.cs" />
+    <Compile Include="content\complex\linear\FormFieldConfig.cs" />
+    <Compile Include="content\complex\linear\FormFieldValue.cs" />
+    <Compile Include="content\complex\linear\FormLinearComplexMessageContentItem.cs" />
+    <Compile Include="content\complex\linear\GridContent.cs" />
+    <Compile Include="content\complex\linear\GridLinearComplexMessageContentItem.cs" />
+    <Compile Include="content\complex\linear\LinearComplexMessageContentItem.cs" />
+    <Compile Include="content\complex\linear\LinearComplexMessageContentType.cs" />
+    <Compile Include="content\complex\linear\TextLinearComplexMessageContentItem.cs" />
+    <Compile Include="content\complex\linear\TitleLinearComplexMessageContentItem.cs" />
+    <Compile Include="content\complex\NativeCommandAndParamsBuilder.cs" />
+    <Compile Include="content\complex\Param.cs" />
+    <Compile Include="content\FileMessageContent.cs" />
+    <Compile Include="content\ImageMessageContent.cs" />
+    <Compile Include="content\InvokeType.cs" />
+    <Compile Include="content\LocationMessageContent.cs" />
+    <Compile Include="content\MessageContent.cs" />
+    <Compile Include="content\NewRichMessageContent.cs" />
+    <Compile Include="content\StringContent.cs" />
+    <Compile Include="content\StringOrObjectConverter.cs" />
+    <Compile Include="content\TextMessageContent.cs" />
+    <Compile Include="content\VideoMessageContent.cs" />
+    <Compile Include="content\VoiceMessageContent.cs" />
+    <Compile Include="MessageClient.cs" />
+    <Compile Include="HttpRequestResult.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="messager\MessageReceiver.cs" />
+    <Compile Include="messager\MessageSender.cs" />
+    <Compile Include="messager\MessageSendOrReceiverType.cs" />
+    <Compile Include="messager\MultiMessageReceiver.cs" />
+    <Compile Include="messager\PersonMessageReceiver.cs" />
+    <Compile Include="messager\PersonMessageReceiverIdType.cs" />
+    <Compile Include="messager\ServiceNoMessageSender.cs" />
+    <Compile Include="MessageType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SendMessageResult.cs" />
+    <Compile Include="IStringOrObjectSerializable.cs" />
+    <Compile Include="utils\Guard.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

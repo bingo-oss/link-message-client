@@ -1,0 +1,9 @@
+java/link-message-server-test/target
+java/RemoteSystemsTempFiles
+java/.metadata
+java/link-message-client/.settings/org.eclipse.wst.validation.prefs
+
+net/**/.vs/
+net/**/bin/
+net/**/obj/Debug/
+net/**/obj/Release/

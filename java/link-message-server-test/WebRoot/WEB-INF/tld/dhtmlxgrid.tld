@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+  "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>GridTaglib</short-name>
+	<uri>http://www.bingosoft.net/dhtmlxgrid.tld</uri>
+	
+	<!-- ********************************** -->
+	<!-- GRID GRID -->
+	<tag>
+		<name>grid</name>
+		<tag-class>bingo.ui.grid.tag.GridTag</tag-class>
+		<body-content>JSP</body-content>
+		<description>GRID基础配置TAG，包含所有GRID配置</description>
+		
+		<attribute>
+			<name>id</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>container</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>loadOnFirst</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		
+		<attribute>
+			<name>allowCopyData</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		
+		<attribute>
+			<name>columnWidthUnit</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>key</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>footerExpress</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>showHeader</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>autoHeight</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>autoWidth</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>minHeight</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>skin</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>gridType</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>enableAutoSizeSaving</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>enableOrderSaving</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>enableAutoHiddenColumnsSaving</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>enableColumnMove</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>containerCssStyle</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>onRowDoubleClicked</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>onRowClick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>onRightClick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>onCellCheck</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>params</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>onBeforeDataLoad</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		
+		<attribute>
+			<name>onAfterDataLoad</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		
+		<attribute>
+			<name>onValidationError</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		
+		<attribute>
+			<name>onValidationSucess</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		
+		<attribute>
+			<name>onHeaderClick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		
+		<attribute>
+			<name>onBeforeSorting</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		<attribute>
+			<name>onAfterSorting</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		
+		<attribute>
+			<name>onCellChanged</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		
+		<attribute>
+			<name>onEditCell</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		
+		<attribute>
+			<name>onRowAdded</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		
+		<attribute>
+			<name>onRowCreated</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		
+		<attribute>
+			<name>onBeforeRowDeleted</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		
+		<attribute>
+			<name>onAfterRowDeleted</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		
+		<attribute>
+			<name>onBeforePageChanged</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		
+		<attribute>
+			<name>onAfterPageChanged</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		
+		<attribute>
+			<name>onAfterGridScriptLoad</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+		
+		<attribute>
+			<name>onGridScriptLoad</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description></description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>column</name>
+		<tag-class>
+			bingo.ui.grid.tag.ColumnTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>列表显示列Tag配置</description>
+		
+		<attribute>
+			<name>id</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>header</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>列标题</description>
+		</attribute>
+		
+		<attribute>
+			<name>width</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>宽度</description>
+		</attribute>
+		
+		<attribute>
+			<name>align</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>对齐方式</description>
+		</attribute>
+		
+		<attribute>
+			<name>frozen</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>是否冻结（默认false）</description>
+		</attribute>
+		
+		<attribute>
+			<name>visible</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+			<description>是否可见（默认true）</description>
+		</attribute>
+		
+		<attribute>
+			<name>sortable</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>是否可排序（默认false）</description>
+		</attribute>
+		
+		<attribute>
+			<name>color</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>列颜色</description>
+		</attribute>
+		
+		<attribute>
+			<name>format</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>列数据转换格式</description>
+		</attribute>
+		
+		<attribute>
+			<name>queryExpression</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>查询表达式</description>
+		</attribute>
+		
+		<attribute>
+			<name>type</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>列类型</description>
+		</attribute>
+		
+		<attribute>
+			<name>exportable</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>是否可导出</description>
+		</attribute>
+		
+		<attribute>
+			<name>isKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>是否是主键</description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>checkAllColumn</name>
+		<tag-class>
+			bingo.ui.grid.tag.CheckAllColumnTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>全选列Tag配置</description>
+		
+		<attribute>
+			<name>width</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>宽度</description>
+		</attribute>
+		
+		<attribute>
+			<name>frozen</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>是否冻结（默认false）</description>
+		</attribute>
+		
+		<attribute>
+			<name>visible</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+			<description>是否可见（默认true）</description>
+		</attribute>
+		
+		<attribute>
+			<name>color</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>列颜色</description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>operationColumn</name>
+		<tag-class>
+			bingo.ui.grid.tag.OperationColumnTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>操作列Tag配置</description>
+		
+		<attribute>
+			<name>header</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+			<description>列标题</description>
+		</attribute>
+		
+		<attribute>
+			<name>width</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>宽度</description>
+		</attribute>
+		
+		<attribute>
+			<name>visible</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+			<description>是否可见（默认true）</description>
+		</attribute>
+		
+		<attribute>
+			<name>color</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>列颜色</description>
+		</attribute>
+		
+		<attribute>
+			<name>frozen</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>是否冻结（默认false）</description>
+		</attribute>
+		
+		<attribute>
+			<name>onBeforeMenuRender</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>菜单弹出前事件</description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>action</name>
+		<tag-class>
+			bingo.ui.grid.tag.ActionTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>自定义Action配置</description>
+		
+		<attribute>
+			<name>id</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>icon</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>label</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>onClick</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>visible</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>group</name>
+		<tag-class>
+			bingo.ui.grid.tag.GroupTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>列分组</description>
+		
+		<attribute>
+			<name>header</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>组标题</description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>datasource</name>
+		<tag-class>
+			bingo.ui.grid.tag.DatasourceTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>Grid数据源配置</description>
+		
+		<attribute>
+			<name>daoName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>selectSqlId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>selectCountSqlId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>sumSqlId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>defaultSortExpression</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fixedQueryCondition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>includePageParams</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>recordConverter</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>page</name>
+		<tag-class>
+			bingo.ui.grid.tag.PageTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>Grid分页设置</description>
+		
+		<attribute>
+			<name>enabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>size</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>sizeList</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>position</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>export</name>
+		<tag-class>
+			bingo.ui.grid.tag.ExportTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>Grid导出配置</description>
+		
+		<attribute>
+			<name>enabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>dataExporter</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>rowConverter</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>fileName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>templateFileName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>
