@@ -7,7 +7,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -48,7 +51,7 @@ public class MessageClient {
 	private String secretKey;
 
 	private String tokenGetServiceUrl; // 获取token的服务地址
-	private String messageSendServiceUrl; // 发送消息的服务地址
+	protected String messageSendServiceUrl; // 发送消息的服务地址
 
 	protected HttpClient  httpClient;
 	protected AccessToken accessToken;
@@ -76,6 +79,14 @@ public class MessageClient {
 			this.httpClient = getDefaultHttpClient();
 		}
 	}
+	
+	public MessageClient(String messageSendServiceUrl) {
+		this.messageSendServiceUrl = messageSendServiceUrl;
+		
+		if (null == httpClient) {
+			this.httpClient = getDefaultHttpClient();
+		}
+    }
 	
 	private HttpClient getDefaultHttpClient() {
 		SSLContextBuilder          builder = new SSLContextBuilder();
@@ -118,7 +129,7 @@ public class MessageClient {
 		params.add(new BasicNameValuePair("appid", appId));
 		params.add(new BasicNameValuePair("secret", secretKey));
 
-		HttpRequestResult result = doPostQuietly(this.tokenGetServiceUrl, params);
+		HttpRequestResult result = doPostQuietly(this.tokenGetServiceUrl, params, null);
 		
 		// 如果调用rest服务出问题了，那么就直接accessToken
 		if (!result.isSuccess()) {
@@ -131,11 +142,19 @@ public class MessageClient {
 		return accessToken;
 	}
 
-	private HttpResponse doPost(String url, List<NameValuePair> params, String paramCharset) throws IOException {
-		HttpPost httpPost = new HttpPost(url);
+	private HttpResponse doPost(String url, List<NameValuePair> params, Map<String,String> headers, String paramCharset) throws IOException {
+		final HttpPost httpPost = new HttpPost(url);
 
 		if (null == paramCharset || paramCharset.trim().length() == 0) {
 			paramCharset = "UTF-8";
+		}
+		
+		if(null != headers) {
+			headers.entrySet().forEach(new Consumer<Map.Entry<String, String>>() {
+				public void accept(Entry<String, String> entry) {
+					httpPost.addHeader(entry.getKey(), entry.getValue());
+				}
+			});
 		}
 		
 		if (null != params) {
@@ -147,11 +166,11 @@ public class MessageClient {
 		return httpResponse;
 	}
 	
-	private HttpRequestResult doPostQuietly(String url, List<NameValuePair> params, String paramCharset) {
+	private HttpRequestResult doPostQuietly(String url, List<NameValuePair> params, Map<String,String> headers, String paramCharset) {
 		HttpRequestResult httpRequestResult = new HttpRequestResult();
 		
 		try {
-			HttpResponse httpResponse = doPost(url, params, paramCharset);
+			HttpResponse httpResponse = doPost(url, params, headers, paramCharset);
 			httpRequestResult.setSuccess(true);
 			httpRequestResult.setResult(EntityUtils.toString(httpResponse.getEntity(), paramCharset));
 		} catch (IOException e) {
@@ -163,8 +182,8 @@ public class MessageClient {
 		return httpRequestResult;
 	}
 	
-	private HttpRequestResult doPostQuietly(String url, List<NameValuePair> params) {
-		return doPostQuietly(url, params, null);
+	protected HttpRequestResult doPostQuietly(String url, List<NameValuePair> params, Map<String,String> headers) {
+		return doPostQuietly(url, params, headers, null);
 	}
 
 	/**
@@ -247,7 +266,7 @@ public class MessageClient {
 		params.add(new BasicNameValuePair("id_type", String.valueOf(messageReceivers.getIdType())));
 		params.add(new BasicNameValuePair("msgIds", makeMessageIds(messageReceivers.getLength())));
 
-		HttpRequestResult requestResult = doPostQuietly(messageSendServiceUrl, params);
+		HttpRequestResult requestResult = doPostQuietly(messageSendServiceUrl, params, null);
 		
 		if (!requestResult.isSuccess()) {
 			return new SendMessageResult(false, requestResult.getResult());
@@ -256,7 +275,7 @@ public class MessageClient {
 		return JSON.parseObject(requestResult.getResult(), SendMessageResult.class);
 	}
 	
-	private String makeMessageIds(int messageNumber) {
+	protected String makeMessageIds(int messageNumber) {
 		StringBuilder messageIds = new StringBuilder();
 		for (int i = 0; i < messageNumber; i++) {
 			messageIds.append(",").append(UUID.randomUUID().toString());

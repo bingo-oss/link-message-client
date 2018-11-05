@@ -1,15 +1,20 @@
 package link.message.client.messager;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * 消息接收者
- * 
- * @author zhongt
- *
+ * @author Etomy
  */
 public class MessageReceiver {
+
+	@JSONField(name="to_id")
 	protected String toId;
+	@JSONField(name="to_name")
 	protected String toName;
+	@JSONField(name="to_type")
 	protected String toType;
+	@JSONField(name="to_company")
 	protected String toCompany;
 
 	public String getToId() {

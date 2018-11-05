@@ -36,8 +36,6 @@ public class StringOrObjectSerializer implements ObjectSerializer {
 			return;
 		}
 		
-		
 		out.writeString(object.toString());
 	}
-
 }

@@ -28,7 +28,9 @@ public class Message {
 	@JSONField(name="to_device_types")
 	private String toDeviceTypes;
 	MessageContent  content;
+	@JSONField(unwrapped=true)
 	MessageSender   from;
+	@JSONField(unwrapped=true)
 	MessageReceiver to;
  
 	public String getId() {
