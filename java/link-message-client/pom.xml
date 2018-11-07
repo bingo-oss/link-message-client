@@ -11,12 +11,12 @@
 		<repository>
 			<id>bingo-maven-repository-releases</id>
 			<name>bingo-maven-repository-releases</name>
-			<url>https://maven.bingosoft.net/content/repositories/releases</url>
+			<url>http://maven.bingosoft.net/content/repositories/releases</url>
 		</repository>
 		<snapshotRepository>
 			<id>bingo-maven-repository-snapshots</id>
 			<name>bingo-maven-repository-snapshots</name>
-			<url>https://maven.bingosoft.net/content/repositories/snapshots</url>
+			<url>http://maven.bingosoft.net/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 	
