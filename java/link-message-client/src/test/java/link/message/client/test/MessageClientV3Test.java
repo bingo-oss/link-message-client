@@ -33,11 +33,15 @@ public class MessageClientV3Test {
 	
 	@Test
 	public void testSendTextMessage() {
+		// 构造简单文本消息
 		MessageContent msg = new TextMessageContent("简单文本消息");
+		// 设置接收者设备类型
 		msg.setToDeviceTypes("02");
 		MessageSender from = new MessageSender();
+		// 设置服务号ID
 		from.setFromId("001f310c-b03a-450a-b54c-a5fd3db6580f");
 		msg.setFrom(from);
+		// 发送消息给指定用户
 		SendMessageResult result = messageClient.sendSingleMessage(msg, new PersonMessageReceiver("admin", "管理员"));
 //		System.out.println(result.getError());
 		Assert.assertEquals(true, result.isSuccess());
