@@ -4,20 +4,20 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>link.sdk</groupId>
 	<artifactId>link-message-client</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 
 	<distributionManagement>
-		<repository>
-			<id>bingo-maven-repository-releases</id>
-			<name>bingo-maven-repository-releases</name>
-			<url>http://maven.bingosoft.net/content/repositories/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>bingo-maven-repository-snapshots</id>
-			<name>bingo-maven-repository-snapshots</name>
-			<url>http://maven.bingosoft.net/content/repositories/snapshots</url>
-		</snapshotRepository>
+	    <repository>
+	        <id>nexus-bingo</id>
+	        <name>releases</name>
+	        <url>https://repo.bingosoft.net/repository/releases</url>
+	    </repository>
+	    <snapshotRepository>
+	        <id>nexus-bingo</id>
+	        <name>snapshots</name>
+	        <url>https://repo.bingosoft.net/repository/snapshots</url>
+	    </snapshotRepository>
 	</distributionManagement>
 	
 	<properties>

@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
-import java.util.function.Consumer;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -150,11 +149,9 @@ public class MessageClient {
 		}
 		
 		if(null != headers) {
-			headers.entrySet().forEach(new Consumer<Map.Entry<String, String>>() {
-				public void accept(Entry<String, String> entry) {
-					httpPost.addHeader(entry.getKey(), entry.getValue());
-				}
-			});
+			for(Entry<String,String> entry : headers.entrySet()) {
+				httpPost.addHeader(entry.getKey(), entry.getValue());
+			}
 		}
 		
 		if (null != params) {

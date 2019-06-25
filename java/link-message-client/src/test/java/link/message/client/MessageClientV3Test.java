@@ -1,4 +1,4 @@
-package link.message.client.test;
+package link.message.client;
 
 import org.junit.Before;
 import org.junit.Test;

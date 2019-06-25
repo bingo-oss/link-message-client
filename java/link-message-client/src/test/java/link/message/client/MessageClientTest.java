@@ -1,4 +1,4 @@
-package link.message.client.test;
+package link.message.client;
 
 import java.util.ArrayList;
 import java.util.List;
