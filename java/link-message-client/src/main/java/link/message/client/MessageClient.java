@@ -24,6 +24,7 @@ import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONException;
 
 import link.message.client.content.MessageContent;
 import link.message.client.messager.MessageReceiver;
@@ -39,6 +40,7 @@ import link.message.client.utils.Guard;
  *
  */
 public class MessageClient {
+	
 	private static final String TOKEN = "token";
 	private static final String SEND = "send";
 	
@@ -136,8 +138,12 @@ public class MessageClient {
 			return accessToken;
 		}
 		
-		// 缓存accessToken
-		accessToken = JSON.parseObject(result.getResult(), AccessToken.class);
+		try {
+			// 缓存token
+			accessToken = JSON.parseObject(result.getResult(), AccessToken.class);
+		} catch(JSONException e) {
+			throw new JSONException(String.format("tokenUrl: %s, response: %s", tokenGetServiceUrl, result.getResult()), e);
+		}
 		return accessToken;
 	}
 

@@ -4,9 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import junit.framework.Assert;
-import link.message.client.IMConfig;
-import link.message.client.MessageClientV3;
-import link.message.client.SendMessageResult;
 import link.message.client.auth.AccessTokenProvider;
 import link.message.client.auth.AccessTokenProviderImpl;
 import link.message.client.content.MessageContent;

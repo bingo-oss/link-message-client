@@ -8,8 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import junit.framework.Assert;
-import link.message.client.MessageClient;
-import link.message.client.SendMessageResult;
 import link.message.client.content.MessageContent;
 import link.message.client.content.NewRichMessageContent;
 import link.message.client.content.TextMessageContent;
