@@ -7,6 +7,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.alibaba.fastjson.JSON;
+
 import junit.framework.Assert;
 import link.message.client.content.MessageContent;
 import link.message.client.content.NewRichMessageContent;
@@ -35,15 +37,15 @@ public class MessageClientTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		/*messageClient = new MessageClient("http://linktest.bingocc.cc:10082/svrnum/",
-				                          "43b80351-2c0a-4e84-a3d0-43eb7d35bc00",
-				                          "43b80351-2c0a-4e84-a3d0-43eb7d35bc00");*/
-		messageClient = new MessageClient("http://10.201.76.141:10082/svrnum/",
-                "e9468a1a-37f9-11e4-b316-dc0ea18fc32-",
-                "43b80351-2c0a-4e84-a3d0-43eb7d35bc00");
-    	/*messageClient = new MessageClient("http://10.201.76.93:10082/svrnum",
-                "3ecc8782-d1bd-45dc-88a5-b65d83dc5c30",
-                "1e5bc77ad12f496b8f9d038291de3680");*/
+//		String embUrl = "http://10.201.76.141:10082/svrnum/";
+//		String serviceNoId = "e9468a1a-37f9-11e4-b316-dc0ea18fc32-";
+//		String appSecret = "43b80351-2c0a-4e84-a3d0-43eb7d35bc00";
+		
+		String embUrl = "https://embbeta.bingolink.biz/svrnum/";
+		String serviceNoId = "d5cbaf8f-2868-4afd-a912-f6406fd020c9";
+		String appSecret = "6128e1eef0784d6db34c68ef973300f3";
+		
+		messageClient = new MessageClient(embUrl, serviceNoId, appSecret);
 	}
 
 	@After
@@ -53,9 +55,13 @@ public class MessageClientTest {
 
 	@Test
 	public void testSendTextMessage() {
+		String toUserLoginId = "epm_xuyan";
+		String toUsername = "epm_xuyan";
+		
 		MessageContent msg = new TextMessageContent("简单文本消息");
-		msg.setToDeviceTypes("02");
-		SendMessageResult result = messageClient.sendSingleMessage(msg, new PersonMessageReceiver("admin", "管理员"));
+//		msg.setToDeviceTypes("02");
+		SendMessageResult result = messageClient.sendSingleMessage(msg, new PersonMessageReceiver(toUserLoginId, toUsername));
+		System.out.println(JSON.toJSONString(result));
 		Assert.assertEquals(true, result.isSuccess());
 	}
 	
